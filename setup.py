@@ -19,7 +19,7 @@ if not version:
     raise ValueError("PYPI_TAG environment variable is not set.")
 
 setup(
-    name="test_app",
+    name="test_app_hommat",
     version=version,
     description="A test library.",
     packages=find_packages(),
