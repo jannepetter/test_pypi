@@ -1,0 +1,29 @@
+name: Run on Tag Push to Main
+
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - master
+
+jobs:
+  run-robot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build the package
+        env:
+          PYPI_TAG: ${{ github.ref_name }}
+        run: |
+          python -m pip install --upgrade build
+          python -m build -w
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          repository-url: https://test.pypi.org/legacy/

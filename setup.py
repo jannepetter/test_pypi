@@ -3,6 +3,7 @@ Setup file for Pypi.
 """
 
 import os
+import re
 from setuptools import setup, find_packages
 
 
@@ -15,8 +16,13 @@ def read_file(filename: str):
 
 
 version = os.environ.get("PYPI_TAG")
+
+semver_regex = r"^\d+\.\d+\.\d+$"
 if not version:
     raise ValueError("PYPI_TAG environment variable is not set.")
+
+if not re.match(semver_regex, version):
+    raise ValueError(f"Git tag '{version}' is not a valid, e.g. 1.2.3 ")
 
 setup(
     name="test_app_hommat",
