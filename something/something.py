@@ -4,5 +4,5 @@ class TestStuff:
         self.some = some
 
     def say(self):
-        msg = f"main {self.some}"
+        msg = f"test {self.some}"
         print(msg)
