@@ -17,7 +17,7 @@ def read_file(filename: str):
 
 version = os.environ.get("PYPI_TAG")
 
-semver_regex = r"^\d+\.\d+\.\d+$"
+semver_regex = r"^v?\d+\.\d+\.\d+$"
 if not version:
     raise ValueError("PYPI_TAG environment variable is not set.")
 
