@@ -15,14 +15,13 @@ def read_file(filename: str):
         return f.read()
 
 
-version = os.environ.get("PYPI_TAG")
-
-semver_regex = r"^v?\d+\.\d+\.\d+$"
-if not version:
-    raise ValueError("PYPI_TAG environment variable is not set.")
+version = os.environ.get("PYPI_TAG", "v0.0.0")
+semver_regex = r"^v\d+\.\d+\.\d+$"
 
 if not re.match(semver_regex, version):
-    raise ValueError(f"Git tag '{version}' is not a valid, e.g. 1.2.3 ")
+    raise ValueError(f"Git tag '{version}' is not a valid, e.g. v1.2.3 ")
+
+version = version[1:]
 
 setup(
     name="test_app_hommat",
