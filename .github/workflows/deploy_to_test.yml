@@ -4,7 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'The tag to use in deployment'
+        description: 'The tag to use in deployment. In form vX.Y.Z e.g. v0.1.2'
+        required: true
+      branch:
+        description: 'What branch you wish to build and test.'
         required: true
 
 jobs:
@@ -14,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: test
+          ref: ${{ github.event.inputs.branch }}
 
       - name: Build the package
         env:
