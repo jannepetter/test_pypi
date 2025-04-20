@@ -4,5 +4,5 @@ class TestStuff:
         self.some = some
 
     def say(self):
-        msg = f"test no tag {self.some}"
+        msg = f"test some tag {self.some}"
         print(msg)
