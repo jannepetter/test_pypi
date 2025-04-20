@@ -3,7 +3,7 @@ name: Run on Tag Push to Main
 on:
   push:
     tags:
-      - 'v*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 jobs:
   run-robot:
     runs-on: ubuntu-latest
